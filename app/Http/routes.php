@@ -29,3 +29,10 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
     //
 });
+
+/*
+ *  ROTAS DO TREINAMENTO
+ */
+Route::get('exemplo', 'WelcomeControllerExemplo@exemplo');
+Route::get('admin/categories', 'AdminCategoriesController@index');
+Route::get('admin/products', 'AdminProductsController@index');
