@@ -18,9 +18,29 @@ class AdminProductsController extends Controller
         $this->products = $product;
     }
 
-    public function index()
+    public function Index()
     {
         $products = $this->products->all();
         return view('products', compact('products'));
+    }
+    
+    public function postInsert(){
+        return "Salva as Informações";
+    }
+    
+    public function getInsert(){
+        return "Exibe o formulário de cadastro";
+    }
+    
+    public function getDelete($id){
+        return "Deleta o cadastro conforme o id $id";
+    }
+    
+    public function getEdit($id){
+        return "Altera o cadastro conforme o id $id";
+    }
+    
+    public function postEdit($id){
+        return "Salva as alterações do id $id";
     }
 }
