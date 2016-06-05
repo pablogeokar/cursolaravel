@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace CodeCommerce\Http\Controllers;
 
@@ -20,25 +20,42 @@ class AdminCategoriesController extends Controller {
         $categories = $this->categories->all();
         return view('categories', compact('categories'));
     }
+    
+    public function getCreate() {
+        return view('admin.categories-create');
+    }
 
-    public function postInsert() {
-        return "Salva as Informações";
+    public function store(Requests\CategoryRequest $request) {
+        $input = $request->all();
+        
+        $category = $this->categories->fill($input);
+        
+        $category->save();
+        return redirect('admin/categories');
     }
 
     public function getInsert() {
         return "Exibe o formulário de cadastro";
     }
 
-    public function getDelete($id) {
-        return "Deleta o cadastro conforme o id $id";
+    public function destroy($id) {
+        
+        $this->categories->find($id)->delete();
+        
+        return redirect()->route('categories');
     }
 
-    public function getEdit($id) {
-        return "Altera o cadastro conforme o id $id";
+    public function edit($id) {
+        
+        $category = $this->categories->find($id);
+        
+        return view('admin.categories-edit', compact('category'));
     }
 
-    public function postEdit($id) {
-        return "Salva as alterações do id $id";
+    public function update(Requests\CategoryRequest $request, $id) {
+        
+        $this->categories->find($id)->update($request->all());
+        return redirect()->route('categories');
     }
 
 }

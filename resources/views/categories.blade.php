@@ -1,7 +1,34 @@
-<h1>Categories List</h1>
+@extends('app')
 
-<ul>
-    @foreach($categories as $category)
-        <li>{{$category->name}} - ({{$category->description}})</li>
-    @endforeach
-</ul>
+@section('content')
+
+
+
+<div class="container">
+    <h1>Categories List</h1>
+    <br>
+    <a href="{{ route('categories.create') }}" class="btn btn-info" >New Category</a>
+    <br>
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+
+        @foreach($categories as $category)
+        <tr>
+            <td>{{$category->id}}</td>
+            <td>{{$category->name}}</td>
+            <td>{{$category->description}}</td>
+            <td><a href="{{ route('categories.edit', ['id' => $category->id])}}">Edit</a></td>
+            <td><a href="{{ route('categories.destroy', ['id' => $category->id])}}">Delete</a></td>
+        </tr>
+        @endforeach
+
+    </table>
+</div>
+
+
+@endsection
