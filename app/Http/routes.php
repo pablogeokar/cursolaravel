@@ -36,12 +36,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function () {
     Route::post('categories', 'AdminCategoriesController@store');
     Route::put('categories/{id?}/update', ['as' => 'categories.update', 'uses' => 'AdminCategoriesController@update']);
 
-    Route::get('products/', 'AdminProductsController@index');
-    Route::get('products/insert', 'AdminProductsController@getInsert');
-    Route::get('products/{id?}/destroy', 'AdminProductsController@destroy');
-    Route::get('products/edit/{id?}', 'AdminProductsController@getEdit');
-    Route::post('products/insert', 'AdminProductsController@postInsert');
-    Route::post('products/edit', 'AdminProductsController@postEdit');
+    Route::get('products',              ['as' => 'products', 'uses' => 'AdminProductsController@index']);    
+    Route::get('products/create',       ['as' => 'products.create', 'uses' => 'AdminProductsController@create']);        
+    Route::get('products/{id?}/destroy',['as' => 'products.destroy', 'uses' => 'AdminProductsController@destroy']);
+    Route::get('products/{id?}/edit',   ['as' => 'products.edit', 'uses' => 'AdminProductsController@edit']);
+    Route::put('products/{id?}/update', ['as' => 'products.update', 'uses' => 'AdminProductsController@update']);
+    Route::post('products',             ['as' => 'products.store', 'uses' => 'AdminProductsController@store']);        
+    
+    
 });
 
 

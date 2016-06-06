@@ -32,11 +32,7 @@ class AdminCategoriesController extends Controller {
         
         $category->save();
         return redirect('admin/categories');
-    }
-
-    public function getInsert() {
-        return "Exibe o formulário de cadastro";
-    }
+    }   
 
     public function destroy($id) {
         

@@ -28,7 +28,7 @@
     </div>
     
     <div class="form-group">
-        {!! Form::submit('Add Category', ['class' => 'btn btn-primary form-control']) !!}        
+        {!! Form::submit('Add Category', ['class' => 'btn btn-primary']) !!}        
     </div>
 
     {!! Form::close() !!}

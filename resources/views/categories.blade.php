@@ -22,8 +22,9 @@
             <td>{{$category->id}}</td>
             <td>{{$category->name}}</td>
             <td>{{$category->description}}</td>
-            <td><a href="{{ route('categories.edit', ['id' => $category->id])}}">Edit</a></td>
-            <td><a href="{{ route('categories.destroy', ['id' => $category->id])}}">Delete</a></td>
+            <td><a href="{{ route('categories.edit', ['id' => $category->id])}}">Edit</a> | 
+                <a href="{{ route('categories.destroy', ['id' => $category->id])}}">Delete</a>
+            </td>
         </tr>
         @endforeach
 

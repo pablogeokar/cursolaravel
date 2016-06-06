@@ -24,23 +24,36 @@ class AdminProductsController extends Controller
         return view('products', compact('products'));
     }
     
-    public function postInsert(){
-        return "Salva as Informações";
+    public function Create() {
+        return view('admin.products-create');
     }
     
-    public function getInsert(){
-        return "Exibe o formulário de cadastro";
+     public function store(Requests\ProductRequest $request) {
+        $input = $request->all();
+        
+        $product = $this->products->fill($input);
+        
+        $product->save();
+        return redirect()->route('products');
     }
     
-    public function getDelete($id){
-        return "Deleta o cadastro conforme o id $id";
+     public function destroy($id) {
+        
+        $this->products->find($id)->delete();
+        
+        return redirect()->route('products');
     }
     
-    public function getEdit($id){
-        return "Altera o cadastro conforme o id $id";
+    public function edit($id) {
+        
+        $product = $this->products->find($id);
+        
+        return view('admin.products-edit', compact('product'));
     }
     
-    public function postEdit($id){
-        return "Salva as alterações do id $id";
+    public function update(Requests\ProductRequest $request, $id) {
+        
+        $this->products->find($id)->update($request->all());
+        return redirect()->route('products');
     }
 }
