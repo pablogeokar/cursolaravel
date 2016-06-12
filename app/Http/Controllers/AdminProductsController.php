@@ -32,6 +32,9 @@ class AdminProductsController extends Controller
         $input = $request->all();
         
         $product = $this->products->fill($input);
+        $product['featured'] = $product['featured'] ? 1 : 0; 
+        $product['recommend'] = $product['recommend'] ? 1 : 0; 
+
         
         $product->save();
         return redirect()->route('products');
@@ -46,12 +49,15 @@ class AdminProductsController extends Controller
     
     public function edit($id) {
         
-        $product = $this->products->find($id);
+        $product = $this->products->find($id);        
         
         return view('admin.products-edit', compact('product'));
     }
     
     public function update(Requests\ProductRequest $request, $id) {
+        
+        $request['featured'] = $request['featured'] ? 1 : 0; 
+        $request['recommend'] = $request['recommend'] ? 1 : 0; 
         
         $this->products->find($id)->update($request->all());
         return redirect()->route('products');

@@ -37,12 +37,12 @@
 
         <div class="col-md-3">
             {!! Form::label('featured', 'Featured:') !!}
-            {!! Form::checkbox('featured') !!}        
+            {!! Form::checkbox('featured', 1) !!}        
         </div>
         
         <div class="col-md-3">
             {!! Form::label('recommend', 'Recommend:') !!}
-            {!! Form::checkbox('recommend') !!}        
+            {!! Form::checkbox('recommend', 1) !!}        
         </div>
         
     </div>
