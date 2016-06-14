@@ -15,7 +15,12 @@
 
     @endif
 
-    {!! Form::open(['route' => 'products']) !!}     
+    {!! Form::open(['route' => 'products']) !!}   
+    
+    <div class="form-group">
+        {!! Form::label('category_id', 'Category:') !!}
+        {!! Form::select('category_id', $categories, null, ['class' => 'form-control']) !!}
+    </div> 
 
     <div class="form-group">
         {!! Form::label('name', 'Name:') !!}
