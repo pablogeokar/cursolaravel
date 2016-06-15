@@ -52,6 +52,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function () {
     Route::group(['prefix' => 'images'], function() {
        
         Route::get('{id?}/product', ['as' => 'products.images', 'uses' => 'AdminProductsController@images']);
+        Route::get('create/{id?}/product', ['as' => 'products.images.create', 'uses' => 'AdminProductsController@createImage']);
+        Route::get('destroy/{id?}/image', ['as' => 'products.images.destroy', 'uses' => 'AdminProductsController@destroyImage']);
+        Route::post('store/{id?}/product', ['as' => 'products.images.store', 'uses' => 'AdminProductsController@storeImage']);
     });
 });
 
