@@ -86,6 +86,7 @@ class AdminProductsController extends Controller {
         $image = $productImage::create(['product_id' => $id, 'extension' => $extension]);
 
         Storage::disk('public_local')->put($image->id . '.' . $extension, File::get($file));
+        //Storage::disk('s3')->put($image->id . '.' . $extension, File::get($file));
 
         return redirect()->route('products.images', ['id' => $id]);
     }
@@ -94,9 +95,12 @@ class AdminProductsController extends Controller {
 
         $image = $productImage->find($id);
 
+        
         if (file_exists(public_path() . '/uploads/' . $image->id . '.' . $image->extension)) {
             Storage::disk('public_local')->delete($image->id . '.' . $image->extension);
         }
+         
+        //Storage::disk('s3')->delete($image->id . '.' . $image->extension);
 
         $product = $image->product;
         $image->delete();
