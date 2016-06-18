@@ -12,7 +12,8 @@ class Product extends Model
         'price', 
         'featured', 
         'recommend',
-        'category_id'];
+        'category_id',
+        'tag_list'];
     
     public function category(){
         return $this->belongsTo('CodeCommerce\Category');
@@ -32,7 +33,7 @@ class Product extends Model
         return $this->name . " - " . $this->description;
     }
     
-    public function getTagListAttribute(){
+    public function getTagListsAttribute(){
         $tags = $this->tags->lists('name');
         return implode(',', $tags);
     }

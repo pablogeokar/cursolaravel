@@ -37,6 +37,11 @@
         {!! Form::label('description', 'Description:') !!}
         {!! Form::textarea('description', $product->description, ['class' => 'form-control']) !!}
     </div>
+    
+    <div class="form-group">
+        {!! Form::label('tag-list', 'Tags List:') !!}
+        {!! Form::textarea('tag_list', $product->tag_list, ['class' => 'form-control', 'rows' => '3']) !!}
+    </div>
 
     <div class="form-inline">
 

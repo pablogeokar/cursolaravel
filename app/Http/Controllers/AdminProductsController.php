@@ -10,6 +10,7 @@ use CodeCommerce\Category;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use CodeCommerce\ProductImage;
+use CodeCommerce\Tag;
 
 class AdminProductsController extends Controller {
 
@@ -33,12 +34,18 @@ class AdminProductsController extends Controller {
     public function store(Requests\ProductRequest $request) {
         $input = $request->all();
 
+        //Salva o produto no banco
         $product = $this->products->fill($input);
         $product['featured'] = $product['featured'] ? 1 : 0;
         $product['recommend'] = $product['recommend'] ? 1 : 0;
-
-
         $product->save();
+
+        //Atualiza a tabela de Tags
+        $array_tags = $this->tagToArray($product['tag_list']);
+        //dd($array_tags);
+        //Faz a sincronia 
+        $product->tags()->sync($array_tags);
+
         return redirect()->route('products');
     }
 
@@ -63,6 +70,12 @@ class AdminProductsController extends Controller {
         $request['recommend'] = $request['recommend'] ? 1 : 0;
 
         $this->products->find($id)->update($request->all());
+
+        //Atualiza a tabela de Tags
+        $array_tags = $this->tagToArray($request['tag_list']);
+        $product = Product::find($id);
+        $product->tags()->sync($array_tags);
+
         return redirect()->route('products');
     }
 
@@ -95,17 +108,37 @@ class AdminProductsController extends Controller {
 
         $image = $productImage->find($id);
 
-        
+
         if (file_exists(public_path() . '/uploads/' . $image->id . '.' . $image->extension)) {
             Storage::disk('public_local')->delete($image->id . '.' . $image->extension);
         }
-         
+
         //Storage::disk('s3')->delete($image->id . '.' . $image->extension);
 
         $product = $image->product;
         $image->delete();
 
         return redirect()->route('products.images', ['id' => $product->id]);
+    }
+
+    /* =========================================================
+     * Função desenvolvida por Nilton Morais
+     * O método firstOrCreate é usado para criar um registro ou
+     * ignorar caso este exista.
+     * ========================================================
+     */
+
+    private function tagToArray($tags) {
+        $tags = explode(",", $tags);
+        $tags = array_map('trim', $tags);
+
+        $tagCollection = [];
+        foreach ($tags as $tag) {
+            $t = Tag::firstOrCreate(['name' => $tag]);
+            array_push($tagCollection, $t->id);
+        }
+
+        return $tagCollection;
     }
 
 }
