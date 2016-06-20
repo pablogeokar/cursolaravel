@@ -11,9 +11,8 @@
   |
  */
 
-Route::get('/', function () {
-    return redirect('admin/products');
-});
+Route::get('/', 'StoreController@index');
+Route::get('/category/{id?}', ['as' => 'products.category', 'uses' => 'StoreController@prodsByCategory']);
 
 /*
   |--------------------------------------------------------------------------

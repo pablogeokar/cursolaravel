@@ -69,10 +69,10 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key'    => 'AKIAJYSFKVC3NEWSDMYA',
-            'secret' => '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',
+            'key'    => 'AKIAJYSFCHAVEDMYA',
+            'secret' => '/yiMZTlKFS7YQ6dtjf5SnGSENHAol',
             'region' => 'us-west-2',
-            'bucket' => 'pablogeokar',            
+            'bucket' => 'nome',            
         ],
 
         'rackspace' => [
