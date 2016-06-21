@@ -7,15 +7,8 @@
         <meta name="author" content="">
         <title>Home | E-Shop</title>
 
-        <!--    
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/prettyPhoto.css" rel="stylesheet">
-        <link href="css/animate.css" rel="stylesheet">
-        <link href="css/main.css" rel="stylesheet">
-        <link href="css/responsive.css" rel="stylesheet">
-        -->
-        <link href="{{url('css/all.css')}}" rel="stylesheet">
+        
+        <link href="{{ url(elixir('css/all.css')) }}" rel="stylesheet">
 
 
     </head><!--/head-->
@@ -153,12 +146,7 @@
         </footer><!--/Footer-->
 
 
-
-        <script src="js/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.scrollUp.min.js"></script>
-        <script src="js/jquery.prettyPhoto.js"></script>
-        <script src="js/main.js"></script>
+        <script src="{{ url(elixir('js/all.js')) }}"></script>
 
     </body>
 </html>
