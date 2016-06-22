@@ -41,7 +41,7 @@ class AdminProductsController extends Controller {
         $product->save();
 
         //Atualiza a tabela de Tags
-        $array_tags = $this->tagToArray($product['tag_list']);
+        $array_tags = $this->tagToArray( $product['tag_list']);
         //dd($array_tags);
         //Faz a sincronia 
         $product->tags()->sync($array_tags);
@@ -134,7 +134,7 @@ class AdminProductsController extends Controller {
 
         $tagCollection = [];
         foreach ($tags as $tag) {
-            $t = Tag::firstOrCreate(['name' => $tag]);
+            $t = Tag::firstOrCreate(['name' => ucwords($tag)]);
             array_push($tagCollection, $t->id);
         }
 

@@ -11,8 +11,12 @@
   |
  */
 
-Route::get('/', 'StoreController@index');
-Route::get('/category/{id?}', ['as' => 'products.category', 'uses' => 'StoreController@prodsByCategory']);
+Route::get('/', ['as' => 'products.store', 'uses' => 'StoreController@index']);
+//Route::get('/category/{id?}', ['as' => 'products.category', 'uses' => 'StoreController@prodsByCategory']);
+Route::get('/category/{id?}', ['as' => 'products.category', 'uses' => 'StoreController@category']);
+Route::get('/product/{id?}', ['as' => 'products.product', 'uses' => 'StoreController@product']);
+Route::get('/tag/{id?}', ['as' => 'products.tag', 'uses' => 'StoreController@tag']);
+Route::get('cart/', ['as' => 'products.cart', 'uses' => 'StoreController@cart']);
 
 /*
   |--------------------------------------------------------------------------
