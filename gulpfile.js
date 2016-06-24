@@ -26,15 +26,8 @@ elixir(function (mix) {
 
     mix.scripts([
         'jquery.js',
-        'bootstrap.min.js',
-        'contact.js',
-        'gmaps.js',
-        'html5shiv.js',
+        'bootstrap.min.js',      
         'jquery.maskMoney.js',
-        'jquery.prettyPhoto.js',
-        'jquery.scrollUp.min.js',
-        'main.js',
-        'price-range.js'
     ], 'public/js/all.js');
 
     mix.version(['css/all.css', 'js/all.js']);

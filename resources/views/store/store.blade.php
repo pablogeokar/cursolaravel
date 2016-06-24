@@ -7,8 +7,10 @@
         <meta name="author" content="">
         <title>Home | E-Shop</title>
 
-        
+
         <link href="{{ url(elixir('css/all.css')) }}" rel="stylesheet">
+        
+        
 
 
     </head><!--/head-->
@@ -110,12 +112,12 @@
                     <!-- Categories -->
                     @yield('categories')
                     <!-- /Categories -->
-                    
-                     <!-- Content -->
+
+                    <!-- Content -->
                     @yield('content')
                     <!-- /Content -->
 
-                  
+
 
                 </div>
             </div>
@@ -147,6 +149,8 @@
 
 
         <script src="{{ url(elixir('js/all.js')) }}"></script>
+
+        @yield('scripts') 
 
     </body>
 </html>

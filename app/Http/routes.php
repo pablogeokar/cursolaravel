@@ -11,12 +11,17 @@
   |
  */
 
-Route::get('/', ['as' => 'products.store', 'uses' => 'StoreController@index']);
+Route::group(['middleware' => 'web'], function () {
+    Route::get('/', ['as' => 'products.store', 'uses' => 'StoreController@index']);
 //Route::get('/category/{id?}', ['as' => 'products.category', 'uses' => 'StoreController@prodsByCategory']);
-Route::get('/category/{id?}', ['as' => 'products.category', 'uses' => 'StoreController@category']);
-Route::get('/product/{id?}', ['as' => 'products.product', 'uses' => 'StoreController@product']);
-Route::get('/tag/{id?}', ['as' => 'products.tag', 'uses' => 'StoreController@tag']);
-Route::get('cart/', ['as' => 'products.cart', 'uses' => 'StoreController@cart']);
+    Route::get('/category/{id?}', ['as' => 'products.category', 'uses' => 'StoreController@category']);
+    Route::get('/product/{id?}', ['as' => 'products.product', 'uses' => 'StoreController@product']);
+    Route::get('/tag/{id?}', ['as' => 'products.tag', 'uses' => 'StoreController@tag']);
+    Route::get('/cart/', ['as' => 'products.cart', 'uses' => 'CartController@index']);
+    Route::get('/cart/add/{id?}', ['as' => 'products.cart.add', 'uses' => 'CartController@add']);
+    Route::get('/cart/destroy/{id?}', ['as' => 'products.cart.destroy', 'uses' => 'CartController@destroy']);
+    Route::get('/cart/item/{id?}/{qtd?}', ['as' => 'products.cart.update', 'uses' => 'CartController@update']);
+});
 
 /*
   |--------------------------------------------------------------------------
@@ -51,9 +56,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function () {
         Route::put('{id?}/update', ['as' => 'products.update', 'uses' => 'AdminProductsController@update']);
         Route::post('/', ['as' => 'products.store', 'uses' => 'AdminProductsController@store']);
     });
-    
+
     Route::group(['prefix' => 'images'], function() {
-       
+
         Route::get('{id?}/product', ['as' => 'products.images', 'uses' => 'AdminProductsController@images']);
         Route::get('create/{id?}/product', ['as' => 'products.images.create', 'uses' => 'AdminProductsController@createImage']);
         Route::get('destroy/{id?}/image', ['as' => 'products.images.destroy', 'uses' => 'AdminProductsController@destroyImage']);

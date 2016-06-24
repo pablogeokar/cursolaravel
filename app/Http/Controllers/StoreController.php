@@ -67,10 +67,7 @@ class StoreController extends Controller {
         
         
         return view('store.tags', compact('categories', 'products', 'tag'));        
-    }
+    }    
     
-    public function cart(){
-        return redirect('/');
-    }
 
 }

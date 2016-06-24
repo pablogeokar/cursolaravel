@@ -42,10 +42,7 @@
                 <p>{{ $product->description }}</p>
                 <span>
                     <span>{{ $product->price }}</span>
-                    <a class="btn btn-fefault cart" href="http://commerce.dev:10088/cart/2/add">
-                        <i class="fa fa-shopping-cart"></i>
-                        Adicionar no Carrinho
-                    </a>
+                    <a href="{{ route('products.cart.add', ['id' => $product->id]) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicionar no carrinho</a>                    
                 </span>
             </div>
             <!--/product-information-->

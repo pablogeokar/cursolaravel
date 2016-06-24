@@ -160,6 +160,11 @@ return [
          * Collective HTML         
          */
         Collective\Html\HtmlServiceProvider::class,
+        
+         /*
+         * Laravel DebugBar
+         */
+        Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 

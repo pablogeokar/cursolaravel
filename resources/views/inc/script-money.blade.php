@@ -1,8 +1,9 @@
-<script type="text/javascript" src="{{ asset('js/jquery.maskMoney.js')}}" ></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-              $("#input_money").maskMoney({showSymbol:true, symbol:"US$ ", decimal:".", thousands:","});
-        });
-    </script>
+<script src="{{ url(elixir('js/all.js')) }}"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+$("#input_money").maskMoney({showSymbol:false, symbol: "US$ ", decimal: ".", thousands: ","});
+
+});
+</script>
 
 
