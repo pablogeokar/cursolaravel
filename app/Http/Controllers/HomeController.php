@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace CodeCommerce\Http\Controllers;
 
-use App\Http\Requests;
+use CodeCommerce\Http\Requests;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

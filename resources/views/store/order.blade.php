@@ -17,13 +17,12 @@
                         <td class="description"></td>
                         <td class="price">Price</td>
                         <td class="price">Qtd</td>
-                        <td class="price">Total</td>
-                        <td></td>
+                        <td class="price">Total</td>                    
                     </tr>
                 </thead>
 
                 <tbody>
-                    @forelse($cart->all() as $k=>$item)
+                    @forelse($order->products as $item)
                     <tr>
                         <td class="cart_product">
                             <a href="#">
@@ -32,8 +31,8 @@
                         </td>
 
                         <td class="cart_description">
-                            <h4><a href="#">{{ $item['name'] }}</a></h4>
-                            <p>Código: {{ $k }}</p>
+                            <h4><a href="#">{{ $item->name }}</a></h4>
+                            <p>Código: {{ $item->id }}</p>
                         </td>
 
                         <td class="cart_price">
@@ -41,16 +40,13 @@
                         </td>
 
                         <td class="cart_quantity">
-                            <input type="number" acao="{{ route('products.cart.update', ['id' =>$k]) }}" value="{{ $item['qtd'] }}">
+                            {{ $item['qtd'] }}
                         </td>
 
                         <td class="cart_total">
                             <p class="cart_total_price">R${{ $item['price'] * $item['qtd'] }}</p> 
                         </td>
-
-                        <td class="cart_delete">
-                            <a href="{{ route('products.cart.destroy', ['id' => $k]) }}" class="cart_quantity_delete">Delete</a>                           
-                        </td>
+                       
                     </tr>
                     @empty
 
@@ -66,9 +62,9 @@
                         <td colspan="6">
                             <div class="pull-right">
                                 <span style="margin-right: 80px;">
-                                    TOTAL: R$ {{ $cart->getTotal() }}
+                                    TOTAL: R$ {{ $order->total }}
                                 </span>
-                                <a href="{{ route('checkout.place')}}" class="btn btn-success">Fechar a conta</a>
+                                <a href="#" class="btn btn-success">Finalizar a Compra</a>
                             </div>
                         </td>
                     </tr>
@@ -83,23 +79,7 @@
 
 @endsection
 
-@section('scripts')
-
-<script>
-    $(document).ready(function () {
-
-        $("input").change(function () {
-            var acao = $(this).attr('acao');
-            var qtd = $(this).val();
-            var link = acao + '/' + qtd;
-            window.location.href = link;
-        });
 
 
 
-    });
-</script>
-
-
-@endsection
 
