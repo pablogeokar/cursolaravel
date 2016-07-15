@@ -12,9 +12,7 @@ use CodeCommerce\Product;
 
 class CheckoutController extends Controller {
 
-    public function __construct() {
-        $this->middleware('auth');
-    }
+   
 
     public function place(Order $orderModel, OrderItem $orderItem) {
 
@@ -35,11 +33,14 @@ class CheckoutController extends Controller {
                         'product_id' => $k,
                         'price' => $item['price'],
                         'qtd' => $item['qtd'],
-                        'total' => $item['price'] * $item['qtd']
+                        'total' => $item['price'] * $item['qtd'],                        
                     ]);
                 }
 
                 $cart = Session::forget('cart');
+                
+                event(new \CodeCommerce\Events\CheckoutEvent(Auth::user(), $order));
+                
                 return redirect()->route('order', ['id' => $order->id]);
             }
         }

@@ -9,7 +9,7 @@ class Order extends Model {
     protected $fillable = [
         'user_id',
         'total',
-        'status'
+        'status_id'
     ];
 
     public function items() {
@@ -20,11 +20,26 @@ class Order extends Model {
         return $this->belongsTo('CodeCommerce\User');
     }
 
+    /*
+    public function getDescStatusAttribute() {        
+        switch ($this->status){
+            case 0:
+                return 'Aguardando Pagamento';
+                break;
+        }
+    }
+     * 
+     */
+
     public function products() {
         $q = $this->items();
         $q->join('products', 'products.id', '=', 'order_items.product_id')
                 ->get();
         return $q;
+    }
+    
+    public function status(){
+        return $this->belongsTo('CodeCommerce\Status');
     }
 
 }

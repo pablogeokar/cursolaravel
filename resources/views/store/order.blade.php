@@ -21,6 +21,9 @@
                     </tr>
                 </thead>
 
+                <h3>Pedido Realizado com sucesso!</h3>
+                <h5>O Pedido #{{ $order->id}}, foi realizado com sucesso.</h5>
+                <br/>                
                 <tbody>
                     @forelse($order->products as $item)
                     <tr>
@@ -36,7 +39,7 @@
                         </td>
 
                         <td class="cart_price">
-                            R${{ $item['price'] }}                            
+                            R$ {{ number_format($item['price'],2) }}                            
                         </td>
 
                         <td class="cart_quantity">
@@ -44,9 +47,9 @@
                         </td>
 
                         <td class="cart_total">
-                            <p class="cart_total_price">R${{ $item['price'] * $item['qtd'] }}</p> 
+                            <p class="cart_total_price">R$ {{ number_format(($item['price'] * $item['qtd']),2)   }}</p> 
                         </td>
-                       
+
                     </tr>
                     @empty
 
@@ -62,18 +65,16 @@
                         <td colspan="6">
                             <div class="pull-right">
                                 <span style="margin-right: 80px;">
-                                    TOTAL: R$ {{ $order->total }}
+                                    TOTAL: R$ {{ number_format($order->total,2) }}
                                 </span>
                                 <a href="#" class="btn btn-success">Finalizar a Compra</a>
                             </div>
                         </td>
                     </tr>
-                </tbody>
-
+                </tbody>                
             </table>
-
+            <h6 class="pull-right">Clique em [Finalizar a Compra] para proceder com o pagamento.</h6>
         </div>
-
     </div>
 </section>
 

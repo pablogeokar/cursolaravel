@@ -13,6 +13,7 @@
 
 
 Route::pattern('id', '[0-9]+');
+Route::pattern('status', '[0-9]+');
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
@@ -25,8 +26,13 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/cart/add/{id?}', ['as' => 'products.cart.add', 'uses' => 'CartController@add']);
     Route::get('/cart/destroy/{id?}', ['as' => 'products.cart.destroy', 'uses' => 'CartController@destroy']);
     Route::get('/cart/item/{id?}/{qtd?}', ['as' => 'products.cart.update', 'uses' => 'CartController@update']);
-    Route::get('/checkout/placeOrder', ['as' => 'checkout.place', 'uses' => 'CheckoutController@place']);
-    Route::get('/order/{id?}', ['as' => 'order', 'uses' => 'CheckoutController@order']);
+
+    //Tem que estar autenticados
+    Route::group(['middleware' => 'auth'], function() {
+        Route::get('/checkout/placeOrder', ['as' => 'checkout.place', 'uses' => 'CheckoutController@place']);
+        Route::get('/order/{id?}', ['as' => 'order', 'uses' => 'CheckoutController@order']);
+        Route::get('/account/orders', ['as' => 'account.orders', 'uses' => 'AccountController@orders']);
+    });
 });
 
 /*
@@ -42,6 +48,9 @@ Route::group(['middleware' => 'web'], function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => 'web'], function () {
 
+    Route::get('orders/', ['as' => 'orders', 'uses' => 'AdminOrdersController@index']);
+    Route::get('/orders/{id?}/{status?}', ['as' => 'orders.status', 'uses' => 'AdminOrdersController@updateStatus']);
+    
     Route::group(['prefix' => 'categories'], function() {
         Route::get('/', ['as' => 'categories', 'uses' => 'AdminCategoriesController@index']);
         Route::get('create/', ['as' => 'categories.create', 'uses' => 'AdminCategoriesController@getCreate']);
@@ -70,6 +79,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function () {
     });
 });
 
+Route::get('evento', function(){
+   // Illuminate\Support\Facades\Event::fire(new CodeCommerce\Events\CheckoutEvent());
+    event(new \CodeCommerce\Events\CheckoutEvent());
+});
 
 //Route::get('exemplo', 'WelcomeControllerExemplo@exemplo');
 

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('store.store')
 
 @section('content')
 <div class="container">
@@ -17,9 +17,9 @@
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
 
                                 @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('name') }}</strong>
+                                </span>
                                 @endif
                             </div>
                         </div>
@@ -31,9 +31,9 @@
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
 
                                 @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
                                 @endif
                             </div>
                         </div>
@@ -45,9 +45,9 @@
                                 <input id="password" type="password" class="form-control" name="password">
 
                                 @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
                                 @endif
                             </div>
                         </div>
@@ -59,10 +59,50 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
 
                                 @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                </span>
                                 @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cep" class="col-md-4 control-label">CEP</label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="cep">                                
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="logradouro" class="col-md-4 control-label">Logradouro</label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="logradouro">                                
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bairro" class="col-md-4 control-label">Bairro</label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="bairro">                                
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="uf" class="col-md-4 control-label">Estado</label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="uf">                                
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cidade" class="col-md-4 control-label">Cidade</label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="cidade">                                
                             </div>
                         </div>
 
