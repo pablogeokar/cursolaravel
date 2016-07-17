@@ -16,6 +16,7 @@
                 <th>Itens</th>
                 <th>Valor</th>
                 <th>Status</th>
+                <th>Código Transação</th>
             </tr>
 
             @foreach($orders as $order)
@@ -30,6 +31,7 @@
                 </td>
                 <td>{{ number_format($order->total,2) }}</td>
                 <td>{{ $order->status->description }}</td>
+                <td>{{ $order->transaction_id }}</td>
             </tr>
             @endforeach
         </tbody>

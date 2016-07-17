@@ -32,6 +32,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/checkout/placeOrder', ['as' => 'checkout.place', 'uses' => 'CheckoutController@place']);
         Route::get('/order/{id?}', ['as' => 'order', 'uses' => 'CheckoutController@order']);
         Route::get('/account/orders', ['as' => 'account.orders', 'uses' => 'AccountController@orders']);
+        Route::get('checkout/finaliza', ['as' => 'checkout.finaliza', 'uses' => 'CheckoutController@finalizaCompra']);
     });
 });
 
@@ -50,7 +51,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function () {
 
     Route::get('orders/', ['as' => 'orders', 'uses' => 'AdminOrdersController@index']);
     Route::get('/orders/{id?}/{status?}', ['as' => 'orders.status', 'uses' => 'AdminOrdersController@updateStatus']);
-    
+
     Route::group(['prefix' => 'categories'], function() {
         Route::get('/', ['as' => 'categories', 'uses' => 'AdminCategoriesController@index']);
         Route::get('create/', ['as' => 'categories.create', 'uses' => 'AdminCategoriesController@getCreate']);
@@ -79,10 +80,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function () {
     });
 });
 
-Route::get('evento', function(){
-   // Illuminate\Support\Facades\Event::fire(new CodeCommerce\Events\CheckoutEvent());
+Route::get('evento', function() {
+    // Illuminate\Support\Facades\Event::fire(new CodeCommerce\Events\CheckoutEvent());
     event(new \CodeCommerce\Events\CheckoutEvent());
 });
+
+Route::get('test', 'CheckoutController@test');
 
 //Route::get('exemplo', 'WelcomeControllerExemplo@exemplo');
 

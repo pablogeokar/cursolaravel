@@ -165,6 +165,11 @@ return [
          * Laravel DebugBar
          */
         Barryvdh\Debugbar\ServiceProvider::class,
+        
+        /*
+         * wesleywillians/laravel-pagseguro
+         */
+        LaravelPagseguro\LaravelPagseguroServiceProvider::class,
 
     ],
 

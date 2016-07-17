@@ -23,6 +23,7 @@
 
                 <h3>Pedido Realizado com sucesso!</h3>
                 <h5>O Pedido #{{ $order->id}}, foi realizado com sucesso.</h5>
+                <h5>Transação {{ $order->transaction_id}}</h5>
                 <br/>                
                 <tbody>
                     @forelse($order->products as $item)
